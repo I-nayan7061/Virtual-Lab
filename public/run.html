@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Lab | Virtual Labs Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔬</text></svg>">
+</head>
+<body class="runner-body">
+
+  <!-- Runner Top Bar -->
+  <header class="runner-header">
+    <div class="runner-left">
+      <button onclick="navigateBack()" class="runner-back-btn">
+        <span>←</span> Back to Dashboard
+      </button>
+      <div class="runner-title-group">
+        <h2 id="lab-title">Virtual Laboratory</h2>
+        <span id="lab-subtitle">Loading simulation bench...</span>
+      </div>
+    </div>
+    
+    <div class="runner-right">
+      <button class="runner-btn" id="reload-btn" onclick="reloadIframe()" title="Reload Simulator">🔄</button>
+      <button class="runner-btn" id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">🖥️</button>
+      <button class="runner-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Theme">🌙</button>
+    </div>
+  </header>
+
+  <!-- Iframe container -->
+  <div class="iframe-container" id="iframe-wrap">
+    <iframe id="lab-iframe" src="about:blank"></iframe>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    const LABS_CONFIG = {
+      deld: {
+        title: "DELD & EEE Laboratory",
+        subtitle: "Electrical Circuits & Digital Logic Simulations",
+        src: "labs/deld/index.html"
+      },
+      assembly: {
+        title: "Assembly Language Laboratory",
+        subtitle: "8086 Instruction Executions & Flag Tracers",
+        src: "labs/assembly/index.html"
+      },
+      coding: {
+        title: "Virtual Programming Laboratory",
+        subtitle: "Interactive Compiler for C, C++, Java & Python",
+        src: "labs/coding/index.html?v=1.0.1"
+      },
+      os: {
+        title: "Operating Systems Laboratory",
+        subtitle: "Simulations of Scheduling & Memory Management Algorithms",
+        src: "labs/os/index.html"
+      }
+    };
+
+    let activeLabKey = null;
+    let syncInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const labKey = urlParams.get('lab');
+      
+      if (!labKey || !LABS_CONFIG[labKey]) {
+        alert("Invalid laboratory selected.");
+        window.location.href = "index.html";
+        return;
+      }
+      
+      activeLabKey = labKey;
+      const config = LABS_CONFIG[labKey];
+      
+      // Update header titles
+      document.getElementById('lab-title').textContent = config.title;
+      document.getElementById('lab-subtitle').textContent = config.subtitle;
+      document.title = `${config.title} | Virtual Labs Platform`;
+      
+      // Setup iframe source
+      const iframe = document.getElementById('lab-iframe');
+      iframe.src = config.src;
+      
+      // Setup sync credentials to make sure SSO remains active
+      if (currentUser) {
+        syncSSOKeys(currentUser, apiToken);
+      }
+      
+      // Start background sync loop (every 3 seconds)
+      syncInterval = setInterval(syncIframeProgress, 3000);
+      
+      // Also register page unload event for safety
+      window.addEventListener('beforeunload', () => {
+        syncIframeProgress();
+      });
+    });
+
+    function reloadIframe() {
+      const iframe = document.getElementById('lab-iframe');
+      if (iframe) {
+        iframe.contentWindow.location.reload();
+      }
+    }
+
+    function toggleFullscreen() {
+      const wrap = document.getElementById('iframe-wrap');
+      if (!document.fullscreenElement) {
+        wrap.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Force progress read from the iframe window's localStorage and sync to the platform cloud profile
+    function syncIframeProgress() {
+      const iframe = document.getElementById('lab-iframe');
+      if (!iframe || !iframe.contentWindow) return;
+      
+      try {
+        const iframeLocal = iframe.contentWindow.localStorage;
+        if (!iframeLocal) return;
+        
+        // 1. If active is DELD, read 'eeeProgress' and write it to parent local storage
+        if (activeLabKey === 'deld') {
+          const eeeProgress = iframeLocal.getItem('eeeProgress');
+          if (eeeProgress) {
+            localStorage.setItem('eeeProgress', eeeProgress);
+          }
+        }
+        
+        // 2. If active is OS, read 'completed' and 'xp' and write them to parent local storage
+        if (activeLabKey === 'os') {
+          const completed = iframeLocal.getItem('completed');
+          const xp = iframeLocal.getItem('xp');
+          if (completed) localStorage.setItem('completed', completed);
+          if (xp) localStorage.setItem('xp', xp);
+        }
+        
+        // 3. If active is Coding, read 'codingProgress' and write to parent local storage
+        if (activeLabKey === 'coding') {
+          const codingProgress = iframeLocal.getItem('codingProgress');
+          if (codingProgress) localStorage.setItem('codingProgress', codingProgress);
+        }
+        
+        // Send updates to server if token exists
+        syncProgressToServer();
+      } catch (e) {
+        // Cross-origin blocks can trigger here if the iframe was navigated away from our domain,
+        // which won't happen since all labs are served locally from same origin.
+        console.warn("Iframe progress sync failed: ", e);
+      }
+    }
+
+    async function navigateBack() {
+      // Force one last sync before leaving
+      syncIframeProgress();
+      
+      // Stop sync interval
+      if (syncInterval) clearInterval(syncInterval);
+      
+      // Delay navigation briefly to allow network request to complete
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 300);
+    }
+  </script>
+</body>
+</html>

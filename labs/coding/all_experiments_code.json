@@ -1,0 +1,202 @@
+[
+  {
+    "id": "c-basic-io",
+    "title": "Experiment 1: Basic I/O and Arithmetic",
+    "code": "#include <stdio.h>\\n\\nint main() {\\n    int a, b;\\n    printf(\"Enter two numbers:\\\\n\");\\n    scanf(\"%d %d\", &a, &b);\\n    printf(\"Sum = %d\\\\n\", a + b);\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp2",
+    "title": "Control Structures: if-else and switch",
+    "code": "#include <stdio.h>\\n\\nint main() {\\n    int num;\\n    printf(\"Enter a number: \");\\n    scanf(\"%d\", &num);\\n\\n    if (num > 0)\\n        printf(\"Positive\\\\n\");\\n    else if (num < 0)\\n        printf(\"Negative\\\\n\");\\n    else\\n        printf(\"Zero\\\\n\");\\n\\n    switch(num % 2) {\\n        case 0: printf(\"Even\\\\n\"); break;\\n        case 1:\\n        case -1: printf(\"Odd\\\\n\"); break;\\n    }\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-loops-pattern",
+    "title": "Experiment 2: Loops and Number Patterns",
+    "code": "#include <stdio.h>\\n\\nint main() {\\n    int rows;\\n    printf(\"Enter number of rows: \");\\n    scanf(\"%d\", &rows);\\n\\n    for (int i = 1; i <= rows; i++) {\\n        for (int j = 1; j <= i; j++) {\\n            printf(\"* \");\\n        }\\n        printf(\"\\\\n\");\\n    }\\n\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp4",
+    "title": "Functions and Recursion",
+    "code": "#include <stdio.h>\\n\\nlong long factorial(int n) {\\n    if (n <= 1) return 1;\\n    return n * factorial(n - 1);\\n}\\n\\nint fibonacci(int n) {\\n    if (n <= 1) return n;\\n    return fibonacci(n-1) + fibonacci(n-2);\\n}\\n\\nint main() {\\n    int n;\\n    printf(\"Enter n: \");\\n    scanf(\"%d\", &n);\\n    printf(\"Factorial(%d) = %lld\\\\n\", n, factorial(n));\\n    printf(\"Fibonacci(%d) = %d\\\\n\", n, fibonacci(n));\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp5",
+    "title": "Arrays and Strings",
+    "code": "#include <stdio.h>\\n#include <string.h>\\n\\nint main() {\\n    int arr[] = {5, 3, 8, 1, 9, 2};\\n    int n = 6, i;\\n    printf(\"Array: \");\\n    for (i = 0; i < n; i++) printf(\"%d \", arr[i]);\\n\\n    char str[100];\\n    printf(\"\\\\nEnter a string: \");\\n    scanf(\"%s\", str);\\n    printf(\"Length: %lu\\\\n\", strlen(str));\\n\\n    // Reverse the string\\n    int len = strlen(str);\\n    for (i = 0; i < len/2; i++) {\\n        char tmp = str[i];\\n        str[i] = str[len-1-i];\\n        str[len-1-i] = tmp;\\n    }\\n    printf(\"Reversed: %s\\\\n\", str);\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp6",
+    "title": "Pointers",
+    "code": "#include <stdio.h>\\n\\nvoid swap(int *a, int *b) {\\n    int temp = *a;\\n    *a = *b;\\n    *b = temp;\\n}\\n\\nint main() {\\n    int x = 10, y = 20;\\n    int *p = &x;\\n    printf(\"Address of x: %p\\\\n\", (void*)p);\\n    printf(\"Value via pointer: %d\\\\n\", *p);\\n    swap(&x, &y);\\n    printf(\"After swap: x=%d, y=%d\\\\n\", x, y);\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp7",
+    "title": "Structures and Unions",
+    "code": "#include <stdio.h>\\n#include <string.h>\\n\\nstruct Student {\\n    int rollNo;\\n    char name[50];\\n    float marks;\\n};\\n\\nint main() {\\n    struct Student s1;\\n    s1.rollNo = 101;\\n    strcpy(s1.name, \"Alice\");\\n    s1.marks = 95.5;\\n    printf(\"Roll: %d\\\\nName: %s\\\\nMarks: %.2f\\\\n\", s1.rollNo, s1.name, s1.marks);\\n    printf(\"Size of struct: %lu bytes\\\\n\", sizeof(struct Student));\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp8",
+    "title": "File Handling",
+    "code": "#include <stdio.h>\\n\\nint main() {\\n    FILE *fp;\\n    char line[100];\\n\\n    // Write to file\\n    fp = fopen(\"output.txt\", \"w\");\\n    if (fp == NULL) {\\n        printf(\"Error opening file!\\\\n\");\\n        return 1;\\n    }\\n    fprintf(fp, \"Hello from C!\\\\n\");\\n    fprintf(fp, \"File handling experiment.\\\\n\");\\n    fclose(fp);\\n\\n    // Read back\\n    fp = fopen(\"output.txt\", \"r\");\\n    printf(\"File contents:\\\\n\");\\n    while (fgets(line, 100, fp) != NULL)\\n        printf(\"%s\", line);\\n    fclose(fp);\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp9",
+    "title": "Dynamic Memory Allocation",
+    "code": "#include <stdio.h>\\n#include <stdlib.h>\\n\\nint main() {\\n    int n, i;\\n    printf(\"How many integers to allocate? \");\\n    scanf(\"%d\", &n);\\n\\n    int *arr = (int*) malloc(n * sizeof(int));\\n    if (!arr) { printf(\"Allocation failed\\\\n\"); return 1; }\\n\\n    for (i = 0; i < n; i++) arr[i] = (i + 1) * 10;\\n    printf(\"Values: \");\\n    for (i = 0; i < n; i++) printf(\"%d \", arr[i]);\\n\\n    arr = (int*) realloc(arr, (n + 2) * sizeof(int));\\n    arr[n] = 110; arr[n+1] = 120;\\n    printf(\"\\\\nAfter realloc: \");\\n    for (i = 0; i < n+2; i++) printf(\"%d \", arr[i]);\\n    free(arr);\\n    printf(\"\\\\nMemory freed.\\\\n\");\\n    return 0;\\n}"
+  },
+  {
+    "id": "c-exp10",
+    "title": "Sorting Algorithms",
+    "code": "#include <stdio.h>\\n\\nvoid printArr(int a[], int n) {\\n    for (int i=0;i<n;i++) printf(\"%d \",a[i]);\\n    printf(\"\\\\n\");\\n}\\n\\nvoid bubbleSort(int a[], int n) {\\n    for (int i=0;i<n-1;i++)\\n        for (int j=0;j<n-i-1;j++)\\n            if (a[j] > a[j+1]) {\\n                int t=a[j]; a[j]=a[j+1]; a[j+1]=t;\\n            }\\n}\\n\\nint main() {\\n    int arr[] = {64, 34, 25, 12, 22, 11, 90};\\n    int n = 7;\\n    printf(\"Before: \"); printArr(arr, n);\\n    bubbleSort(arr, n);\\n    printf(\"After:  \"); printArr(arr, n);\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-streams",
+    "title": "Experiment 1: Streams and Expressions",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\nint main() {\\n    double a, b;\\n    cout << \"Enter two decimal numbers:\" << endl;\\n    cin >> a >> b;\\n    cout << \"Product = \" << (a * b) << endl;\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-classes",
+    "title": "Experiment 2: Classes and Objects",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\nclass Rectangle {\\nprivate:\\n    int length;\\n    int breadth;\\n\\npublic:\\n    void setValues(int l, int b) {\\n        length = l;\\n        breadth = b;\\n    }\\n\\n    int area() {\\n        return length * breadth;\\n    }\\n};\\n\\nint main() {\\n    Rectangle rect;\\n    int l, b;\\n    cout << \"Enter length and breadth: \";\\n    cin >> l >> b;\\n    rect.setValues(l, b);\\n    cout << \"Area = \" << rect.area() << endl;\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp3",
+    "title": "Inheritance",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\nclass Animal {\\nprotected:\\n    string name;\\npublic:\\n    Animal(string n) : name(n) {}\\n    void speak() { cout << name << \" makes a sound.\" << endl; }\\n};\\n\\nclass Dog : public Animal {\\npublic:\\n    Dog(string n) : Animal(n) {}\\n    void speak() { cout << name << \" says: Woof!\" << endl; }\\n    void fetch() { cout << name << \" fetches the ball!\" << endl; }\\n};\\n\\nint main() {\\n    Animal a(\"Generic Animal\");\\n    Dog d(\"Buddy\");\\n    a.speak();\\n    d.speak();\\n    d.fetch();\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp4",
+    "title": "Polymorphism and Virtual Functions",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\nclass Shape {\\npublic:\\n    virtual double area() = 0;\\n    virtual void display() { cout << \"Shape area: \" << area() << endl; }\\n    virtual ~Shape() {}\\n};\\n\\nclass Circle : public Shape {\\n    double r;\\npublic:\\n    Circle(double r) : r(r) {}\\n    double area() override { return 3.14159 * r * r; }\\n};\\n\\nclass Square : public Shape {\\n    double s;\\npublic:\\n    Square(double s) : s(s) {}\\n    double area() override { return s * s; }\\n};\\n\\nint main() {\\n    Shape* shapes[] = { new Circle(5), new Square(4) };\\n    for (auto s : shapes) { s->display(); delete s; }\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp5",
+    "title": "Templates",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\ntemplate <typename T>\\nT maxVal(T a, T b) { return (a > b) ? a : b; }\\n\\ntemplate <typename T>\\nclass Stack {\\n    T data[100]; int top = -1;\\npublic:\\n    void push(T val) { data[++top] = val; }\\n    T pop() { return data[top--]; }\\n    bool empty() { return top == -1; }\\n};\\n\\nint main() {\\n    cout << \"Max(3,7): \" << maxVal(3,7) << endl;\\n    cout << \"Max(3.5,2.1): \" << maxVal(3.5,2.1) << endl;\\n    Stack<int> s;\\n    s.push(10); s.push(20); s.push(30);\\n    cout << \"Stack pop: \" << s.pop() << \", \" << s.pop() << endl;\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp6",
+    "title": "STL: Vectors, Maps and Algorithms",
+    "code": "#include <iostream>\\n#include <vector>\\n#include <map>\\n#include <algorithm>\\nusing namespace std;\\n\\nint main() {\\n    vector<int> v = {5,2,8,1,9,3};\\n    cout << \"Before sort: \";\\n    for (auto x: v) cout << x << \" \";\\n    sort(v.begin(), v.end());\\n    cout << \"\\\\nAfter sort: \";\\n    for (auto x: v) cout << x << \" \";\\n\\n    map<string,int> scores;\\n    scores[\"Alice\"] = 95;\\n    scores[\"Bob\"] = 87;\\n    scores[\"Carol\"] = 92;\\n    cout << \"\\\\n\\\\nScoreboard:\\\\n\";\\n    for (auto& p: scores)\\n        cout << p.first << \": \" << p.second << \"\\\\n\";\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp7",
+    "title": "Exception Handling",
+    "code": "#include <iostream>\\n#include <stdexcept>\\nusing namespace std;\\n\\ndouble divide(double a, double b) {\\n    if (b == 0) throw runtime_error(\"Division by zero!\");\\n    if (a < 0 || b < 0) throw invalid_argument(\"Negative numbers not allowed!\");\\n    return a / b;\\n}\\n\\nint main() {\\n    double a, b;\\n    cout << \"Enter two numbers: \";\\n    cin >> a >> b;\\n    try {\\n        cout << \"Result: \" << divide(a, b) << endl;\\n    } catch (const runtime_error& e) {\\n        cout << \"Runtime Error: \" << e.what() << endl;\\n    } catch (const invalid_argument& e) {\\n        cout << \"Invalid Argument: \" << e.what() << endl;\\n    } catch (...) {\\n        cout << \"Unknown exception!\" << endl;\\n    }\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp8",
+    "title": "Operator Overloading",
+    "code": "#include <iostream>\\nusing namespace std;\\n\\nclass Complex {\\npublic:\\n    double real, imag;\\n    Complex(double r=0, double i=0): real(r), imag(i) {}\\n    Complex operator+(const Complex& c) {\\n        return Complex(real+c.real, imag+c.imag);\\n    }\\n    bool operator==(const Complex& c) {\\n        return real==c.real && imag==c.imag;\\n    }\\n    friend ostream& operator<<(ostream& os, const Complex& c) {\\n        os << c.real << (c.imag>=0?\"+\":\"\") << c.imag << \"i\";\\n        return os;\\n    }\\n};\\n\\nint main() {\\n    Complex c1(3,4), c2(1,-2);\\n    cout << \"c1 = \" << c1 << endl;\\n    cout << \"c2 = \" << c2 << endl;\\n    cout << \"c1+c2 = \" << (c1+c2) << endl;\\n    cout << \"Equal? \" << (c1==c2 ? \"Yes\":\"No\") << endl;\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp9",
+    "title": "File Streams",
+    "code": "#include <iostream>\\n#include <fstream>\\n#include <string>\\nusing namespace std;\\n\\nint main() {\\n    // Write\\n    ofstream out(\"data.txt\");\\n    out << \"C++ File Stream Experiment\\\\n\";\\n    out << \"Line 2: Hello World\\\\n\";\\n    out.close();\\n\\n    // Read back\\n    ifstream in(\"data.txt\");\\n    string line;\\n    cout << \"File contents:\\\\n\";\\n    while (getline(in, line))\\n        cout << line << \"\\\\n\";\\n    in.close();\\n    return 0;\\n}"
+  },
+  {
+    "id": "cpp-exp10",
+    "title": "Smart Pointers and Move Semantics",
+    "code": "#include <iostream>\\n#include <memory>\\nusing namespace std;\\n\\nclass Resource {\\npublic:\\n    string name;\\n    Resource(string n) : name(n) { cout << name << \" acquired\\\\n\"; }\\n    ~Resource() { cout << name << \" released\\\\n\"; }\\n};\\n\\nint main() {\\n    {\\n        unique_ptr<Resource> u1 = make_unique<Resource>(\"UniqueResource\");\\n        cout << \"Using: \" << u1->name << \"\\\\n\";\\n    } // auto-released here\\n\\n    shared_ptr<Resource> s1 = make_shared<Resource>(\"SharedResource\");\\n    {\\n        shared_ptr<Resource> s2 = s1; // ref count = 2\\n        cout << \"Ref count: \" << s1.use_count() << \"\\\\n\";\\n    } // ref count = 1\\n    cout << \"Ref count: \" << s1.use_count() << \"\\\\n\";\\n    return 0;\\n}"
+  },
+  {
+    "id": "java-scanner-methods",
+    "title": "Experiment 1: Scanner Input and Methods",
+    "code": "import java.util.Scanner;\\n\\npublic class Main {\\n    static void greet(String name) {\\n        System.out.println(\"Hello, \" + name + \"!\");\\n    }\\n\\n    public static void main(String[] args) {\\n        Scanner scanner = new Scanner(System.in);\\n        System.out.print(\"Enter your name: \");\\n        String name = scanner.nextLine();\\n        greet(name);\\n        scanner.close();\\n    }\\n}"
+  },
+  {
+    "id": "java-exp2",
+    "title": "Control Flow: if-else, switch, loops",
+    "code": "import java.util.Scanner;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Scanner sc = new Scanner(System.in);\\n        System.out.println(\"Enter marks (0-100):\");\\n        int marks = sc.nextInt();\\n        String grade;\\n        if (marks >= 90) grade = \"A\";\\n        else if (marks >= 75) grade = \"B\";\\n        else if (marks >= 60) grade = \"C\";\\n        else grade = \"F\";\\n        System.out.println(\"Grade: \" + grade);\\n        System.out.println(\"\\\\nMultiplication table for 5:\");\\n        for (int i = 1; i <= 10; i++)\\n            System.out.println(\"5 x \" + i + \" = \" + (5*i));\\n        sc.close();\\n    }\\n}"
+  },
+  {
+    "id": "java-arrays-average",
+    "title": "Experiment 2: Arrays and Average Calculation",
+    "code": "import java.util.Scanner;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Scanner scanner = new Scanner(System.in);\\n        System.out.print(\"Enter number of elements: \");\\n        int n = scanner.nextInt();\\n        int[] numbers = new int[n];\\n        int sum = 0;\\n\\n        System.out.println(\"Enter the elements:\");\\n        for (int i = 0; i < n; i++) {\\n            numbers[i] = scanner.nextInt();\\n            sum += numbers[i];\\n        }\\n\\n        double average = n > 0 ? (double) sum / n : 0;\\n        System.out.println(\"Average = \" + average);\\n        scanner.close();\\n    }\\n}"
+  },
+  {
+    "id": "java-exp4",
+    "title": "Inheritance and Polymorphism",
+    "code": "public class Main {\\n    static class Animal {\\n        String name;\\n        Animal(String n) { name = n; }\\n        void speak() { System.out.println(name + \" makes a sound.\"); }\\n    }\\n    static class Dog extends Animal {\\n        Dog(String n) { super(n); }\\n        @Override void speak() { System.out.println(name + \" says: Woof!\"); }\\n        void fetch() { System.out.println(name + \" fetches the ball!\"); }\\n    }\\n    static class Cat extends Animal {\\n        Cat(String n) { super(n); }\\n        @Override void speak() { System.out.println(name + \" says: Meow!\"); }\\n    }\\n    public static void main(String[] args) {\\n        Animal[] animals = { new Dog(\"Rex\"), new Cat(\"Whiskers\"), new Dog(\"Buddy\") };\\n        for (Animal a : animals) a.speak();\\n    }\\n}"
+  },
+  {
+    "id": "java-exp5",
+    "title": "Interfaces and Abstract Classes",
+    "code": "public class Main {\\n    interface Drawable {\\n        void draw();\\n        default String getColor() { return \"Black\"; }\\n    }\\n    interface Resizable {\\n        void resize(double factor);\\n    }\\n    static class Circle implements Drawable, Resizable {\\n        double radius;\\n        Circle(double r) { radius = r; }\\n        public void draw() { System.out.println(\"Drawing circle r=\" + radius); }\\n        public void resize(double f) { radius *= f; System.out.println(\"Resized to r=\" + radius); }\\n    }\\n    static abstract class Vehicle {\\n        abstract String getFuelType();\\n        void describe() { System.out.println(\"Vehicle runs on: \" + getFuelType()); }\\n    }\\n    static class ElectricCar extends Vehicle {\\n        String getFuelType() { return \"Electricity\"; }\\n    }\\n    public static void main(String[] args) {\\n        Circle c = new Circle(5.0);\\n        c.draw();\\n        c.resize(2.0);\\n        System.out.println(\"Color: \" + c.getColor());\\n        new ElectricCar().describe();\\n    }\\n}"
+  },
+  {
+    "id": "java-exp6",
+    "title": "Exception Handling",
+    "code": "import java.util.Scanner;\\n\\nclass NegativeException extends Exception {\\n    NegativeException(String msg) { super(msg); }\\n}\\n\\npublic class Main {\\n    static int divide(int a, int b) throws NegativeException {\\n        if (b < 0) throw new NegativeException(\"Divisor cannot be negative!\");\\n        return a / b;\\n    }\\n    public static void main(String[] args) {\\n        Scanner sc = new Scanner(System.in);\\n        System.out.println(\"Enter two integers (a b):\");\\n        int a = sc.nextInt(), b = sc.nextInt();\\n        try {\\n            System.out.println(\"Result: \" + divide(a, b));\\n        } catch (ArithmeticException e) {\\n            System.out.println(\"Math Error: \" + e.getMessage());\\n        } catch (NegativeException e) {\\n            System.out.println(\"Custom Error: \" + e.getMessage());\\n        } finally {\\n            System.out.println(\"finally block executed.\");\\n        }\\n        sc.close();\\n    }\\n}"
+  },
+  {
+    "id": "java-exp7",
+    "title": "String Manipulation",
+    "code": "import java.util.Scanner;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        Scanner sc = new Scanner(System.in);\\n        System.out.println(\"Enter a sentence:\");\\n        String s = sc.nextLine();\\n        System.out.println(\"Length: \" + s.length());\\n        System.out.println(\"Uppercase: \" + s.toUpperCase());\\n        System.out.println(\"Words: \" + s.trim().split(\"\\\\\\\\s+\").length);\\n        System.out.println(\"Reversed: \" + new StringBuilder(s).reverse());\\n        System.out.println(\"Contains \\"
+  },
+  {
+    "id": "java-exp8",
+    "title": "Collections Framework",
+    "code": "import java.util.*;\\n\\npublic class Main {\\n    public static void main(String[] args) {\\n        String[] words = {\"apple\",\"banana\",\"apple\",\"cherry\",\"banana\",\"apple\"};\\n        Map<String,Integer> freq = new HashMap<>();\\n        for (String w : words)\\n            freq.put(w, freq.getOrDefault(w, 0) + 1);\\n        System.out.println(\"Word Frequencies:\");\\n        freq.forEach((k,v) -> System.out.println(\"  \" + k + \": \" + v));\\n\\n        Set<Integer> set = new HashSet<>(Arrays.asList(1,2,2,3,3,3,4));\\n        System.out.println(\"\\\\nUnique values: \" + set);\\n\\n        List<String> list = new ArrayList<>(Arrays.asList(\"Zebra\",\"Apple\",\"Mango\"));\\n        Collections.sort(list);\\n        System.out.println(\"Sorted: \" + list);\\n    }\\n}"
+  },
+  {
+    "id": "java-exp9",
+    "title": "Multithreading Basics",
+    "code": "public class Main {\\n    static class Counter implements Runnable {\\n        String name; int count;\\n        Counter(String n, int c) { name = n; count = c; }\\n        public void run() {\\n            for (int i = 1; i <= count; i++) {\\n                System.out.println(name + \": \" + i);\\n                try { Thread.sleep(100); } catch (InterruptedException e) {}\\n            }\\n        }\\n    }\\n    public static void main(String[] args) throws InterruptedException {\\n        Thread t1 = new Thread(new Counter(\"Thread-A\", 5));\\n        Thread t2 = new Thread(new Counter(\"Thread-B\", 5));\\n        t1.start(); t2.start();\\n        t1.join(); t2.join();\\n        System.out.println(\"Both threads completed!\");\\n    }\\n}"
+  },
+  {
+    "id": "java-exp10",
+    "title": "Generics and Lambda Expressions",
+    "code": "import java.util.*;\\nimport java.util.stream.*;\\n\\npublic class Main {\\n    static <T> void printPair(T a, T b) {\\n        System.out.println(\"Pair: (\" + a + \", \" + b + \")\");\\n    }\\n    public static void main(String[] args) {\\n        printPair(\"Hello\", \"World\");\\n        printPair(42, 99);\\n\\n        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9,10);\\n        List<Integer> evens = nums.stream()\\n            .filter(n -> n % 2 == 0)\\n            .map(n -> n * n)\\n            .collect(Collectors.toList());\\n        System.out.println(\"Even squares: \" + evens);\\n\\n        int sum = nums.stream().reduce(0, Integer::sum);\\n        System.out.println(\"Sum 1-10: \" + sum);\\n\\n        nums.stream().sorted(Comparator.reverseOrder()).limit(3)\\n            .forEach(System.out::println);\\n    }\\n}"
+  },
+  {
+    "id": "python-input-fstrings",
+    "title": "Experiment 1: Input, Conversion, and f-Strings",
+    "code": "name = input(\"Enter your name: \")\\nage = int(input(\"Enter your age: \"))\\n\\nprint(f\"Hello {name}!\")\\nprint(f\"In 5 years, you will be {age + 5} years old.\")"
+  },
+  {
+    "id": "python-exp2",
+    "title": "Control Flow: if-elif-else and Loops",
+    "code": "marks = int(input(\"Enter marks (0-100): \"))\\nif marks >= 90:\\n    print(\"Grade: A\")\\nelif marks >= 75:\\n    print(\"Grade: B\")\\nelif marks >= 60:\\n    print(\"Grade: C\")\\nelse:\\n    print(\"Grade: F\")\\n\\nprint(\"\\\\nPrime numbers up to 30:\")\\nfor num in range(2, 31):\\n    is_prime = all(num % i != 0 for i in range(2, int(num**0.5)+1))\\n    if is_prime:\\n        print(num, end=\" \")\\nprint()"
+  },
+  {
+    "id": "python-exp3",
+    "title": "Lists, Tuples and Slicing",
+    "code": "# Lists\\nfruits = [\"banana\", \"apple\", \"cherry\", \"mango\"]\\nprint(\"Original:\", fruits)\\nfruits.append(\"grape\")\\nfruits.sort()\\nprint(\"Sorted:\", fruits)\\nprint(\"Slice [1:3]:\", fruits[1:3])\\nprint(\"Reversed:\", fruits[::-1])\\n\\n# Tuple\\ncoords = (10, 20, 30)\\nprint(\"\\\\nTuple:\", coords)\\nprint(\"Sum:\", sum(coords))\\nx, y, z = coords\\nprint(f\"Unpacked: x={x}, y={y}, z={z}\")\\n\\n# List comprehension\\nsquares = [x**2 for x in range(1, 6)]\\nprint(\"\\\\nSquares:\", squares)"
+  },
+  {
+    "id": "python-lists-aggregation",
+    "title": "Experiment 2: Lists and Aggregation",
+    "code": "raw_values = input(\"Enter space-separated numbers: \")\\nnumbers = [int(value) for value in raw_values.split()]\\n\\nprint(f\"Numbers: {numbers}\")\\nprint(f\"Sum = {sum(numbers)}\")\\nprint(f\"Maximum = {max(numbers)}\")"
+  },
+  {
+    "id": "python-exp5",
+    "title": "Functions, *args and **kwargs",
+    "code": "def greet(name, greeting=\"Hello\"):\\n    return f\"{greeting}, {name}!\"\\n\\ndef total(*args):\\n    return sum(args)\\n\\ndef profile(**kwargs):\\n    for k, v in kwargs.items():\\n        print(f\"  {k}: {v}\")\\n\\ndef timer(func):\\n    def wrapper(*args, **kwargs):\\n        print(f\"Calling {func.__name__}...\")\\n        result = func(*args, **kwargs)\\n        print(\"Done!\")\\n        return result\\n    return wrapper\\n\\n@timer\\ndef add(a, b): return a + b\\n\\nprint(greet(\"Alice\"))\\nprint(greet(\"Bob\", \"Hi\"))\\nprint(\"Total:\", total(1, 2, 3, 4, 5))\\nprofile(name=\"Alice\", age=21, gpa=3.9)\\nprint(\"Add result:\", add(10, 20))"
+  },
+  {
+    "id": "python-exp6",
+    "title": "Object-Oriented Programming",
+    "code": "class Animal:\\n    def __init__(self, name):\\n        self.name = name\\n    def speak(self):\\n        return f\"{self.name} makes a sound.\"\\n    def __str__(self):\\n        return f\"Animal({self.name})\"\\n\\nclass Dog(Animal):\\n    def speak(self):\\n        return f\"{self.name} says Woof!\"\\n\\nclass Cat(Animal):\\n    def speak(self):\\n        return f\"{self.name} says Meow!\"\\n\\nclass BankAccount:\\n    def __init__(self, owner, balance=0):\\n        self.owner = owner\\n        self.__balance = balance  # private\\n    @property\\n    def balance(self): return self.__balance\\n    def deposit(self, amt): self.__balance += amt\\n\\nanimals = [Dog(\"Rex\"), Cat(\"Whiskers\"), Dog(\"Buddy\")]\\nfor a in animals:\\n    print(a.speak())\\n\\nacc = BankAccount(\"Alice\", 1000)\\nacc.deposit(500)\\nprint(f\"\\\\n{acc.owner}\\"
+  },
+  {
+    "id": "python-exp7",
+    "title": "File Handling and JSON",
+    "code": "import json\\n\\n# Write file\\nwith open(\"students.txt\", \"w\") as f:\\n    f.write(\"Alice\\\\n\")\\n    f.write(\"Bob\\\\n\")\\n    f.write(\"Carol\\\\n\")\\n\\n# Read file\\nprint(\"File contents:\")\\nwith open(\"students.txt\", \"r\") as f:\\n    for line in f:\\n        print(\" \", line.strip())\\n\\n# JSON\\ndata = {\"name\": \"Alice\", \"age\": 21, \"courses\": [\"CS101\", \"CS201\"]}\\njson_str = json.dumps(data, indent=2)\\nprint(\"\\\\nJSON String:\\\\n\", json_str)\\n\\nparsed = json.loads(json_str)\\nprint(\"\\\\nParsed name:\", parsed[\"name\"])\\nprint(\"Courses:\", parsed[\"courses\"])"
+  },
+  {
+    "id": "python-exp8",
+    "title": "Exception Handling",
+    "code": "class NegativeValueError(Exception):\\n    def __init__(self, val):\\n        super().__init__(f\"Negative value not allowed: {val}\")\\n\\ndef safe_sqrt(n):\\n    if n < 0:\\n        raise NegativeValueError(n)\\n    return n ** 0.5\\n\\ntry:\\n    a = float(input(\"Enter first number: \"))\\n    b = float(input(\"Enter second number: \"))\\n    print(f\"Division: {a/b:.4f}\")\\n    print(f\"Sqrt(a): {safe_sqrt(a):.4f}\")\\nexcept ZeroDivisionError:\\n    print(\"Error: Cannot divide by zero!\")\\nexcept ValueError:\\n    print(\"Error: Please enter valid numbers!\")\\nexcept NegativeValueError as e:\\n    print(f\"Custom Error: {e}\")\\nelse:\\n    print(\"All operations successful!\")\\nfinally:\\n    print(\"Program execution complete.\")"
+  },
+  {
+    "id": "python-exp9",
+    "title": "List Comprehensions and Generators",
+    "code": "import itertools\\n\\nnums = range(1, 11)\\n\\n# List comprehension\\nsquares = [x**2 for x in nums]\\nprint(\"Squares:\", squares)\\n\\n# Filtered comprehension\\nevens = [x for x in nums if x % 2 == 0]\\nprint(\"Evens:\", evens)\\n\\n# Dict comprehension\\nsq_dict = {x: x**2 for x in range(1, 6)}\\nprint(\"Square dict:\", sq_dict)\\n\\n# Set comprehension\\nunique = {x % 5 for x in range(20)}\\nprint(\"Unique remainders mod 5:\", unique)\\n\\n# Generator\\ndef fibonacci_gen():\\n    a, b = 0, 1\\n    while True:\\n        yield a\\n        a, b = b, a+b\\n\\nfib = fibonacci_gen()\\nprint(\"First 10 Fibonacci:\", [next(fib) for _ in range(10)])"
+  },
+  {
+    "id": "python-exp10",
+    "title": "Modules, Packages and Standard Library",
+    "code": "import math\\nimport random\\nimport os\\nfrom datetime import datetime\\nfrom collections import Counter\\n\\nprint(\"=== Math Module ===\")\\nprint(f\"pi = {math.pi:.4f}\")\\nprint(f\"sqrt(144) = {math.sqrt(144)}\")\\nprint(f\"ceil(4.2) = {math.ceil(4.2)}\")\\n\\nprint(\"\\\\n=== Random Module ===\")\\nprint(f\"randint(1,100): {random.randint(1,100)}\")\\nitems = [\"apple\", \"banana\", \"cherry\"]\\nrandom.shuffle(items)\\nprint(f\"Shuffled: {items}\")\\n\\nprint(\"\\\\n=== Datetime ===\")\\nnow = datetime.now()\\nprint(f\"Now: {now.strftime(\\"
+  }
+]

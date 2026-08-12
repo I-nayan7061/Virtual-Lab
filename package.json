@@ -1,0 +1,14 @@
+{
+  "name": "virtual-labs-platform",
+  "version": "1.0.0",
+  "description": "Unified Virtual Labs Platform hosting EEE/DELD, Assembly, Coding, and OS Labs",
+  "main": "server.js",
+  "scripts": {
+    "start": "python server.py",
+    "dev": "python server.py"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

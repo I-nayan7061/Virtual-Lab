@@ -1,0 +1,85 @@
+{
+  "users": {
+    "11": {
+      "name": "Nayan",
+      "rollOriginal": "11",
+      "salt": "b742b92d8e534671be601f2a71845b40",
+      "passwordHash": "e585f6296229887a652be1268649b52916a68d73580e7a95439dce347a16dae2149693bee6239582e4cebeac3ed85df49183733bca1ca7ae3c6e0a537b1a3b1d",
+      "createdAt": "ce0e7601009e4269a19bbd79089c821f"
+    }
+  },
+  "sessions": {
+    "9aebeeaad81d426c816ec11203ed0aec33c6f8e115834c619b408e3e88ed8c1f": {
+      "roll": "11",
+      "createdAt": "34d94ba1228046319eb7b594250b427d"
+    },
+    "f12b59ff06ad48b1ad9c1f8dc5f0c46962b90b6b751044529515eb06b1eda1ac": {
+      "roll": "11",
+      "createdAt": "7b774cc215e84c06af2c32f1208fc198"
+    },
+    "eb3a67af1c594a7eaa6ae340ae527e02ce55bc74953c4b5db8a34f061984380c": {
+      "roll": "11",
+      "createdAt": "9bd23a4aa5a543c9b7df024ec4ee03c9"
+    }
+  },
+  "progress": {
+    "11": {
+      "assembly": {
+        "progressStore": {
+          "hello-world": {
+            "sections": {
+              "aim": true,
+              "components": true,
+              "procedure": true,
+              "simulation": true,
+              "observations": true,
+              "quiz": true
+            }
+          },
+          "macro-alp": {
+            "sections": {}
+          },
+          "addition": {
+            "sections": {}
+          },
+          "subtraction": {
+            "sections": {}
+          },
+          "array-sum": {
+            "sections": {}
+          },
+          "multiplication": {
+            "sections": {}
+          },
+          "division": {
+            "sections": {}
+          },
+          "string-copy": {
+            "sections": {}
+          },
+          "upper-to-lower": {
+            "sections": {}
+          },
+          "char-search": {
+            "sections": {}
+          },
+          "string-compare": {
+            "sections": {}
+          }
+        },
+        "quizState": {
+          "hello-world": {
+            "answered": {},
+            "score": 0
+          }
+        }
+      },
+      "deld": {},
+      "os": {
+        "completed": {},
+        "xp": 0
+      },
+      "coding": []
+    }
+  }
+}

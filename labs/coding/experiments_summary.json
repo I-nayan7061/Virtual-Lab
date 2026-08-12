@@ -1,0 +1,202 @@
+[
+  {
+    "id": "c-basic-io",
+    "title": "Experiment 1: Basic I/O and Arithmetic",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp2",
+    "title": "Control Structures: if-else and switch",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-loops-pattern",
+    "title": "Experiment 2: Loops and Number Patterns",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp4",
+    "title": "Functions and Recursion",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp5",
+    "title": "Arrays and Strings",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp6",
+    "title": "Pointers",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp7",
+    "title": "Structures and Unions",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp8",
+    "title": "File Handling",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp9",
+    "title": "Dynamic Memory Allocation",
+    "code_snippet": ""
+  },
+  {
+    "id": "c-exp10",
+    "title": "Sorting Algorithms",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-streams",
+    "title": "Experiment 1: Streams and Expressions",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-classes",
+    "title": "Experiment 2: Classes and Objects",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp3",
+    "title": "Inheritance",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp4",
+    "title": "Polymorphism and Virtual Functions",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp5",
+    "title": "Templates",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp6",
+    "title": "STL: Vectors, Maps and Algorithms",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp7",
+    "title": "Exception Handling",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp8",
+    "title": "Operator Overloading",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp9",
+    "title": "File Streams",
+    "code_snippet": ""
+  },
+  {
+    "id": "cpp-exp10",
+    "title": "Smart Pointers and Move Semantics",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-scanner-methods",
+    "title": "Experiment 1: Scanner Input and Methods",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp2",
+    "title": "Control Flow: if-else, switch, loops",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-arrays-average",
+    "title": "Experiment 2: Arrays and Average Calculation",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp4",
+    "title": "Inheritance and Polymorphism",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp5",
+    "title": "Interfaces and Abstract Classes",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp6",
+    "title": "Exception Handling",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp7",
+    "title": "String Manipulation",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp8",
+    "title": "Collections Framework",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp9",
+    "title": "Multithreading Basics",
+    "code_snippet": ""
+  },
+  {
+    "id": "java-exp10",
+    "title": "Generics and Lambda Expressions",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-input-fstrings",
+    "title": "Experiment 1: Input, Conversion, and f-Strings",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp2",
+    "title": "Control Flow: if-elif-else and Loops",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp3",
+    "title": "Lists, Tuples and Slicing",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-lists-aggregation",
+    "title": "Experiment 2: Lists and Aggregation",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp5",
+    "title": "Functions, *args and **kwargs",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp6",
+    "title": "Object-Oriented Programming",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp7",
+    "title": "File Handling and JSON",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp8",
+    "title": "Exception Handling",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp9",
+    "title": "List Comprehensions and Generators",
+    "code_snippet": ""
+  },
+  {
+    "id": "python-exp10",
+    "title": "Modules, Packages and Standard Library",
+    "code_snippet": ""
+  }
+]
