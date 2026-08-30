@@ -319,8 +319,11 @@ async function bootstrapSession() {
       
       // Dynamically render homepage cards if grid exists
       const grid = document.getElementById('dynamic-labs-grid');
-      if (grid && window.vlabModules.length > 0) {
-        grid.innerHTML = window.vlabModules.map(mod => `
+      const renderCards = (query = '') => {
+        if (!grid || window.vlabModules.length === 0) return;
+        const q = query.toLowerCase();
+        const filtered = window.vlabModules.filter(mod => mod.name.toLowerCase().includes(q) || mod.description.toLowerCase().includes(q));
+        grid.innerHTML = filtered.map(mod => `
           <a href="${mod.url}" class="lab-card glass">
             <div class="card-icon ${mod.color}">${mod.icon}</div>
             <div class="card-content">
@@ -333,6 +336,12 @@ async function bootstrapSession() {
             </div>
           </a>
         `).join('');
+      };
+      renderCards();
+      
+      const searchInput = document.getElementById('labSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => renderCards(e.target.value));
       }
     }
   } catch (e) {
