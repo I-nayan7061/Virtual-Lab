@@ -125,19 +125,15 @@
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCgUr4F3Pf_mxkYCKES5CP3jVWe1t_XKU0",
-      authDomain: "internship-8dc8f.firebaseapp.com",
-      projectId: "internship-8dc8f",
-      storageBucket: "internship-8dc8f.firebasestorage.app",
-      messagingSenderId: "97366027895",
-      appId: "1:97366027895:web:aa438439f3cfb388d66072",
-      measurementId: "G-RQS5D8XCEJ"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    let app, auth;
+    try {
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+    } catch (err) {
+      console.warn("Firebase Auth initialization:", err);
+    }
 
     window.handleLogin = async function(e) {
       e.preventDefault();

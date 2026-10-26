@@ -9,27 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyCgUr4F3Pf_mxkYCKES5CP3jVWe1t_XKU0",
-    authDomain: "internship-8dc8f.firebaseapp.com",
-    projectId: "internship-8dc8f",
-    storageBucket: "internship-8dc8f.firebasestorage.app",
-    messagingSenderId: "97366027895",
-    appId: "1:97366027895:web:aa438439f3cfb388d66072",
-    measurementId: "G-RQS5D8XCEJ"
-  };
+  import { firebaseConfig } from "./js/firebase-config.js";
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  try {
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
+  } catch (err) {
+    console.warn("Firebase initialization:", err);
+  }
 </script>
 </head>
 <body>
